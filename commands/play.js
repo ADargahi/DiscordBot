@@ -16,7 +16,7 @@ module.exports = {
         const server_queue = queue.get(message.guild.id);
 
         if (command === 'play'){
-            if (args.length) return message.channel.send('play what? IDIOT');
+            if (!args.length) return message.channel.send('play what? IDIOT');
             let song = {};
             console.log(song);
 
@@ -60,7 +60,7 @@ module.exports = {
                 }
             } else {
                 server_queue.songs.push(song);
-                return message.channel.send('**${song.title}** added to the queue!');
+                return message.channel.send(`**${song.title}** added to the queue!`);
             }
         }
         
@@ -83,7 +83,7 @@ const video_player = async (guild, song) => {
         song_queue.songs.shift();
         video_player(guild, song_queue.songs[0]);
     });
-    await song_queue.text_channel.send('Now playing **${song.title}**')
+    await song_queue.text_channel.send(`Now playing **${song.title}**`)
 }
 
 const skip_song = (message, server_queue) => {
@@ -91,6 +91,7 @@ const skip_song = (message, server_queue) => {
     if (!server_queue){
         return message.channel.send('No songs in queue 😢');
     }
+    // call finish => shift instead of end ?
     server_queue.connection.dispatcher.end();
 }
 

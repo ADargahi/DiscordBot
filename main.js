@@ -8,4 +8,4 @@ client.events = new Discord.Collection();
     require(`./handlers/${handler}`)(client, Discord);
 })
 
-client.login('ODg4NzE1NTk0MzIzNjA3NjEz.YUWu5Q.SsTZwWIwmC7CjLCg8T504EkVT6I');
+client.login('n/a');
